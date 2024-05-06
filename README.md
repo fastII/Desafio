@@ -81,7 +81,7 @@ Quando se trata de escolher entre EKS (Amazon Elastic Kubernetes Service) com Fa
 O Fargate permite executar contêineres sem precisar gerenciar as instâncias do EC2 subjacentes. Com o Fargate, você simplesmente define seus recursos de CPU e memória para cada contêiner e o AWS cuida do dimensionamento e gerenciamento da infraestrutura subjacente.
 É uma opção excelente para equipes que desejam simplificar a gestão e a escalabilidade de contêineres sem se preocupar com a infraestrutura subjacente.
 
-#EC2:
+# EC2:
 
 EC2 oferece mais controle sobre a infraestrutura subjacente. Você pode escolher os tipos de instância EC2, configurar a rede e o armazenamento conforme necessário.
 É uma opção mais flexível se você precisa de controle granular sobre a infraestrutura, tem requisitos específicos de hardware ou deseja aproveitar recursos como GPUs para cargas de trabalho específicas.
