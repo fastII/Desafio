@@ -22,4 +22,5 @@ workalendar==15.4.0
 drf-api-tracking==1.8.0
 dictdiffer==0.9.0
 python-telegram-bot==13.7.0
+Flask==2.0.1
 
