@@ -13,7 +13,7 @@ spec:
   selector:
     matchLabels:
       run: appapi
-  # remove replica if using gitops
+  ## remove replica if using gitops
   replicas: 1
   template:
     metadata:
