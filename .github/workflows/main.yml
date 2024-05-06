@@ -43,7 +43,7 @@ jobs:
       #  with: 
       #    images: fastii/app:${{github.run_number}}
       #    manifests: |
-            devops/eks/deployment.yaml
+      #      devops/eks/deployment.yaml
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
