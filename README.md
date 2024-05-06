@@ -76,12 +76,12 @@ Segue abaixo detalhamento dos Passos
 O referido Projeto tem como objetivo descrever e apresentar de forma eficaz todo o desenvolvimento de uma Gestão de Orquestração de Contairners no Provedor da AWS. Temos duas opções são elas:
 Quando se trata de escolher entre EKS (Amazon Elastic Kubernetes Service) com Fargate e EC2 (Amazon Elastic Compute Cloud), existem algumas considerações importantes a ter em mente.
 
-# EKS com Fargate:
+# EKS com Fargate
 
 O Fargate permite executar contêineres sem precisar gerenciar as instâncias do EC2 subjacentes. Com o Fargate, você simplesmente define seus recursos de CPU e memória para cada contêiner e o AWS cuida do dimensionamento e gerenciamento da infraestrutura subjacente.
 É uma opção excelente para equipes que desejam simplificar a gestão e a escalabilidade de contêineres sem se preocupar com a infraestrutura subjacente.
 
-# EC2:
+# EC2
 
 EC2 oferece mais controle sobre a infraestrutura subjacente. Você pode escolher os tipos de instância EC2, configurar a rede e o armazenamento conforme necessário.
 É uma opção mais flexível se você precisa de controle granular sobre a infraestrutura, tem requisitos específicos de hardware ou deseja aproveitar recursos como GPUs para cargas de trabalho específicas.
@@ -91,7 +91,7 @@ Para essa Arquitetura escolhemos o EKS Fargate, conforme dito acima, com ele nã
 
 O Amazon Elastic Kubernetes Service (EKS) com AWS Fargate é uma combinação poderosa para orquestração de contêineres. Aqui estão algumas vantagens e desvantagens:
 
-# Vantagens:
+# Vantagens
 
 Facilidade de Uso: Com o EKS, você pode gerenciar seus clusters Kubernetes com mais facilidade, e o Fargate elimina a necessidade de gerenciar servidores subjacentes.
 
@@ -101,7 +101,7 @@ Custo Efetivo: Com o Fargate, você paga apenas pelos recursos de computação c
 
 Isolamento de Recursos: Cada contêiner é executado em seu próprio ambiente isolado, garantindo segurança e isolamento de recursos.
 
-# Desvantagens:
+# Desvantagens
 
 Maior Custo por Recurso: Embora o Fargate ofereça economia de custos em termos de gerenciamento de infraestrutura, o custo por recurso pode ser maior em comparação com a execução de contêineres em instâncias EC2, especialmente para cargas de trabalho de longa duração e consistentes.
 
