@@ -38,12 +38,12 @@ jobs:
         with:
           method: kubeconfig
           kubeconfig: ${{secrets.EKS_CONFIG}}
-      - name: Deploy to Kubernetes cluster
-        uses: Azure/k8s-deploy@v4.9
-        with: 
-          images: fastii/app:${{github.run_number}}
-          manifests: |
-            devops/eks/deployment.yaml
+      #- name: Deploy to Kubernetes cluster
+      #  uses: Azure/k8s-deploy@v4.9
+      #  with: 
+      #    images: fastii/app:${{github.run_number}}
+      #    manifests: |
+      #      devops/eks/deployment.yaml
         
         
         
