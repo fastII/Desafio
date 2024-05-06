@@ -2,13 +2,13 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: dev
+  name: prd
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: app
-  namespace: dev
+  namespace: prd
 spec:
   selector:
     matchLabels:
@@ -37,8 +37,8 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: appapi
-  namespace: dev
+  name: app
+  namespace: prd
 spec:
   ports:
   - port: 8000
