@@ -137,7 +137,7 @@ https://docs.aws.amazon.com/eks/latest/userguide/fargate-getting-started.html
 
 
 ## ESTRUTURA CI&CD ##
-Para esse projeto escolhi o Github+Gitactions para receber fonte do projeto, estrutura pipeline e estrutura dos arquivos do Terraform. Não irei abordar a fundo conceitos de CI&CD
+Para esse projeto foi escolhido o Github+Gitactions para receber fonte do projeto, estrutura pipeline e estrutura dos arquivos do Terraform. Não irei abordar a fundo conceitos de CI&CD
 Mas a ideia foi:  
 Criar uma estrutura com todos os steps para realizar o deployment no ambiente EKS Fargate, utilizei alguns recursos já disponível no marketplace do Github, como por exemplo o checkout e docker build.
 
