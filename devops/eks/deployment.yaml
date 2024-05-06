@@ -7,18 +7,18 @@ metadata:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: commentapi
+  name: app
   namespace: dev
 spec:
   selector:
     matchLabels:
-      run: comment-api
+      run: appapi
   # remove replica if using gitops
   replicas: 1
   template:
     metadata:
       labels:
-        run: comment-api
+        run: appapi
     spec:
       containers:
       - name: app
@@ -34,3 +34,16 @@ spec:
           requests:
             cpu: 200m
             memory: 256Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: appapi
+  namespace: dev
+spec:
+  ports:
+  - port: 8000
+  selector:
+    run: appapi
+            
+            
