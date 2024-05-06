@@ -129,7 +129,7 @@ Policy
 EKS
 Role e Profile Fargate 
 
-# Obs.: Na criação do profile fargate pelo terraform foi encontrado um problema na execução dos pods do COREDNS no NS kube-system, nesse step criei uma função IAM onde determinava a execução dos Pods Core_DNS. Para sanar esse problema tive excluir a que foi criada pelo terraform e criar outra pela ConsoleAWS, fazendo uma busca vi que é possível adicionar um ADD-ON na estrutura terraform para termos este problema, entratanto não declarei este passo no Terraform devido tempo.
+# Obs.: Na criação do profile fargate pelo terraform foi encontrado um problema na execução dos pods do COREDNS no NS kube-system, nesse step criei uma função IAM onde determinava a execução dos Pods Core_DNS. Como solução de contorno excluir a que foi criada pelo terraform e criei outra pela ConsoleAWS, fazendo uma busca posteriormente vi que é possível adicionar um ADD-ON na estrutura terraform para termos este problema, entratanto não declarei este passo no Terraform devido tempo.
 
 Segue abaixo link fonte
 https://docs.aws.amazon.com/pt_br/eks/latest/userguide/managing-coredns.html
