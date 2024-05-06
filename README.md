@@ -113,7 +113,47 @@ Dependência da Nuvem: Ao optar pelo EKS com Fargate, você está vinculado à i
 
 Considerando esses aspectos, o EKS com Fargate pode ser uma excelente escolha para muitos casos de uso, especialmente para equipes que buscam uma maneira fácil e eficiente de executar aplicativos em contêineres sem se preocupar com a infraestrutura subjacente.
 
+# Segue abaixos estimativas de valores com as duas tecnologias, utilizei a família t3a.large e uma instância do fargate a maioria quem saiu mais em conta foi a do fargate, abaixo somente uma ilustração
+
+![estimulate_eks_ec2jpg](https://github.com/fastII/desafio/assets/16465756/317fac72-4406-46ea-96a6-119a7219a264)
+![estimulate_eks_fargate](https://github.com/fastII/desafio/assets/16465756/0cf3b0ba-91c2-44d5-9ade-8c968d727236)
 
 
-
+# Segue desenho da Arquitetura proposta
 ![desafiot](https://github.com/fastII/desafio/assets/16465756/d5dc6337-c529-4d1e-8e6e-ea932e53166a)
+
+Ressalvas criei 04 sub-redes, delas 02 são públicas e 02 privadas para o ELB. Marquei com tag para os ELB internos e públicos.
+Nat Gateway
+Rotas
+Policy
+EKS
+Role e Profile Fargate 
+
+# Obs.: Para o profile Fargate tive um problema, pois criei uma função IAM onde determinava a execução dos Pods Core_DNS, entranto tive que excluir posteriormente a execução do Terraform e criar na interface, fazendo uma busca vi que é possível adicionar um ADD-ON na estrutura terraform para não ter esse problema. Posteriormente a exclusão e a criaão diretamente na Console, os pods do CORE_DNS subiram no NS kube-system.
+
+Segue abaixo link fonte
+https://docs.aws.amazon.com/pt_br/eks/latest/userguide/managing-coredns.html
+https://docs.aws.amazon.com/eks/latest/userguide/fargate-getting-started.html
+
+
+## ESTRUTURA CI&CD ##
+Para esse projeto escolhi o Github+Gitactions para receber fonte do projeto, estrutura pipeline e estrutura dos arquivos do Terraform. Não irei abordar a fundo conceitos de CI&CD
+Mas a ideia foi:  
+Criar uma estrutura com todos os steps para realizar o deployment no ambiente EKS Fargate, utilizei alguns recursos já disponível no marketplace do Github, como por exemplo o checkout e docker build.
+
+Foto meramente ilustrativa
+![integracaocontinua](https://github.com/fastII/desafio/assets/16465756/addee989-a847-4c0d-8426-591f5cc2ed50)
+
+Para o Workflow de GIT para Deploy, adotei uma abordagem que utilizo algum temp, no qual eu realizo os deployers nos ambientes sem aprovação para dev, stg e para produção através de aprovação no caso do GitActions ela será realizada através de um PullRequest que dispara pra a branch main ( Produção)
+Branches criadas DEV, STG
+
+
+
+
+
+
+
+
+
+
+
