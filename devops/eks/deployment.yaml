@@ -1,0 +1,36 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: dev
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: commentapi
+  namespace: dev
+spec:
+  selector:
+    matchLabels:
+      run: comment-api
+  # remove replica if using gitops
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: comment-api
+    spec:
+      containers:
+      - name: php-apache
+        image: fastii/app
+        ports:
+        - containerPort: 8000
+          name: http
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 200m
+            memory: 256Mi
+          requests:
+            cpu: 200m
+            memory: 256Mi
