@@ -141,7 +141,7 @@ Para esse projeto escolhi o Github+Gitactions para receber fonte do projeto, est
 Mas a ideia foi:  
 Criar uma estrutura com todos os steps para realizar o deployment no ambiente EKS Fargate, utilizei alguns recursos já disponível no marketplace do Github, como por exemplo o checkout e docker build.
 
-Foto meramente ilustrativa
+# Foto meramente ilustrativa
 ![integracaocontinua](https://github.com/fastII/desafio/assets/16465756/addee989-a847-4c0d-8426-591f5cc2ed50)
 
 Para o Workflow de GIT para Deploy, adotei uma abordagem que utilizo algum temp, no qual eu realizo os deployers nos ambientes sem aprovação para dev, stg e para produção através de aprovação no caso do GitActions ela será realizada através de um PullRequest que dispara pra a branch main ( Produção)
