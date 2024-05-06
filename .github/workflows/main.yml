@@ -27,5 +27,19 @@ jobs:
           tags: |
             fastii/app:latest
             fastii/app:${{github.run_number}}
-          
+            
+  CD:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4.1.4
+      - name: Definindo o context
+        uses: Azure/k8s-set-context@v3.0
+        with:
+          method: kubeconfig
+          kubeconfig: ${{secrets.EKS_CONFIG}}
+        
+      
+      
+    
   
