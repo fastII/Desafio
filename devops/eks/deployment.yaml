@@ -23,7 +23,7 @@ spec:
       - name: app
         image: fastii/app
         ports:
-        - containerPort: 8000
+        - containerPort: 5000
           name: http
           protocol: TCP
         resources:
@@ -41,8 +41,8 @@ metadata:
   namespace: prd
 spec:
   ports:
-  - port: 8000
+  - port: 5000
   selector:
-    run: appapi
+    run: app
             
             
