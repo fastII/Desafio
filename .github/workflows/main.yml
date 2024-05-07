@@ -51,15 +51,15 @@ jobs:
       #    aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       #    aws-region: us-east-1
           
-      - name: Update kube config
-        run: aws eks update-kubeconfig --name ntconsult 
+      #- name: Update kube config
+      #  run: aws eks update-kubeconfig --name ntconsult 
         
       - name: Deploy to Kubernetes cluster
         uses: Azure/k8s-deploy@v4.9
         with: 
           images: fastii/app:${{github.run_number}}
           manifests: |
-            ./devops/eks/deployment.yaml
+            devops/eks/deployment.yaml
       #- name: Configure AWS credentials
       #  uses: aws-actions/configure-aws-credentials@v4
       #  with:
