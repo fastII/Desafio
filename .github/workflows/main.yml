@@ -39,6 +39,7 @@ jobs:
       #    version: 'v1.29.0' # default is latest stable
       #  id: install
       - name: Definindo o context
+        uses: ThomasKliszowski/setup-kubectl@v1
         with:
           kube-config: ${{secrets.EKS_CONFIG}}
       #- name: Definindo o context
