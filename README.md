@@ -220,6 +220,8 @@ Nos steps de CI&CD utilizei os  conectores  checkout, AWS Credentias no qual os 
 Ressalto que dentro do diretório Devops está o código fonte .py, mas arquivo Dockerfile e no Diretório EKS estão os manifestos que realizam os deployers nos seus respectivos ambientes. Todos os deployers foram realizados com sucesso segue abaixo evidências:
 
 ![deployer](https://github.com/fastII/desafio/assets/16465756/d88d6c53-d764-4bc7-b3d3-a8325850238b)
+![image](https://github.com/fastII/desafio/assets/16465756/906db138-a166-4291-b006-8adb166c75eb)
+
 
 Segue evidências da aplicação subindo com a porta 5000
 ![app](https://github.com/fastII/desafio/assets/16465756/371f0022-40f2-4329-9f0f-8975d124d0e7)
