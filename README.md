@@ -144,8 +144,99 @@ Criar uma estrutura com todos os steps para realizar o deployment no ambiente EK
 # Foto meramente ilustrativa
 ![integracaocontinua](https://github.com/fastII/desafio/assets/16465756/addee989-a847-4c0d-8426-591f5cc2ed50)
 
-Para o Workflow de GIT para Deploy, adotei uma abordagem que utilizo algum temp, no qual eu realizo os deployers nos ambientes sem aprovação para dev, stg e para produção através de aprovação no caso do GitActions ela será realizada através de um PullRequest que dispara pra a branch main ( Produção)
+Para o Workflow de GIT para Deploy, adotei uma abordagem que utilizo faz algum temp, no qual eu realizo os deployers nos ambientes sem aprovação para dev, stg e para produção através de aprovação no caso do GitActions ela será realizada através de um PullRequest que dispara pra a branch main ( Produção)
 Branches criadas DEV, STG
+
+Segue abaixo yaml da pipeline
+
+name: CI-CD
+
+on:
+  push:
+    branches: ["dev", "stg"] 
+  pull_request:
+    branches: ["main"]    
+
+  workflow_dispatch:
+env:
+  AWS_REGION: us-east-1  
+
+jobs:
+  CI:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4.1.4
+      - name: Autenticação DockerHub
+        uses: docker/login-action@v3.1.0
+        with:
+          username: ${{secrets.DOCKERHUB_USER}}
+          password: ${{secrets.PWD_DOCKERHUB}}
+      - name: Construção imagem Docker
+        uses: docker/build-push-action@v5.3.0
+        with:
+          context: ./devops
+          file: ./devops/Dockerfile
+          push: true
+          tags: |
+            fastii/app:latest
+            fastii/app:${{github.run_number}}
+            
+  CD:
+    runs-on: ubuntu-latest
+    needs: [CI]
+    steps:
+      - uses: actions/checkout@v4.1.4
+      
+      #- name: Definindo o context
+      #  uses: Azure/k8s-set-context@v3.0
+      #  with:
+      #    method: kubeconfig
+      #    kubeconfig: ${{secrets.EKS_CONFIG}}
+            
+      #- name: Deploy to Kubernetes cluster
+      #  uses: Azure/k8s-deploy@v4.9
+      #  with: 
+      #    images: fastii/app:${{github.run_number}}
+      #    manifests: |
+      #      devops/eks/deployment.yaml
+      
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          images: fastii/app:${{github.run_number}}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{env.AWS_REGION}}
+
+      - name: Update kube config
+        run: aws eks update-kubeconfig --name ntconsult 
+          
+      - name: Deploy to EKS
+        run: |
+         kubectl apply -f devops/eks/deployment.yaml 
+
+Nos steps de CI&CD utilizei os  conectores  checkout, AWS Credentias no qual os mesmos estão disponíveis no próprio markteplace do GitActions e por fim coloquei o comando run para ele realizar o apply dos manifestos.
+
+Ressalto que dentro do diretório Devops está o código fonte .py, mas arquivo Dockerfile e no Diretório EKS estão os manifestos que realizam os deployers nos seus respectivos ambientes. Todos os deployers foram realizados com sucesso segue abaixo evidências:
+
+![deployer](https://github.com/fastII/desafio/assets/16465756/d88d6c53-d764-4bc7-b3d3-a8325850238b)
+
+Segue evidências da aplicação subindo com a porta 5000
+![app](https://github.com/fastII/desafio/assets/16465756/371f0022-40f2-4329-9f0f-8975d124d0e7)
+
+## Para finalizar realizei uma única chamada que está no passo criando e listando comentários da matéria
+
+
+![app_curl](https://github.com/fastII/desafio/assets/16465756/aba3a100-4439-4151-99a2-d4818f09073d)
+
+# Passo de monitoramento, apenas foi instalado o MetricsServer para coletar métricas de recurso do cluster
+
+![image](https://github.com/fastII/desafio/assets/16465756/7cbe04a9-85b7-4619-88b2-29c1d86a6135)
+
+# Obs.: Fiquei devendo a instalação de uma stack de monitormento no caso prometheus com grafana e os demais comandos para criar e listar comentários da matéria por falta de tempo.
+
+
+
 
 
 
