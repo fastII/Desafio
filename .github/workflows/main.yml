@@ -35,28 +35,13 @@ jobs:
     needs: [CI]
     steps:
       - uses: actions/checkout@v4.1.4
-      #- name: Install kubectl
-      #  uses: azure/setup-kubectl@v2.0
-      #  with:
-      #    version: 'v1.30.0' # default is latest stable
-      #  id: install
       
       #- name: Definindo o context
       #  uses: Azure/k8s-set-context@v3.0
       #  with:
       #    method: kubeconfig
       #    kubeconfig: ${{secrets.EKS_CONFIG}}
-      
-      #- name: Definindo Context
-      #  uses: ianbelcher/eks-kubectl-action@1.6
-      #  with:
-      #    aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      #    aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      #    aws-region: us-east-1
-          
-      #- name: Update kube config
-      #  run: aws eks update-kubeconfig --name ntconsult 
-        
+            
       #- name: Deploy to Kubernetes cluster
       #  uses: Azure/k8s-deploy@v4.9
       #  with: 
@@ -67,6 +52,7 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
+          images: fastii/app:${{github.run_number}}
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{env.AWS_REGION}}
