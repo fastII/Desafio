@@ -1,0 +1,47 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: dev
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+  namespace: dev
+spec:
+  selector:
+    matchLabels:
+      run: appapi
+  replicas: 1
+# Replicas
+  template:
+    metadata:
+      labels:
+        run: appapi
+    spec:
+      containers:
+      - name: app
+        image: fastii/app
+        ports:
+        - containerPort: 8000
+          name: http
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 200m
+            memory: 256Mi
+          requests:
+            cpu: 200m
+            memory: 256Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: appapi
+  namespace: dev
+spec:
+  ports:
+  - port: 8000
+  selector:
+    run: appapi
