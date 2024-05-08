@@ -129,7 +129,7 @@ Policy
 EKS
 Role e Profile Fargate 
 
-# Obs.: Na criação do profile fargate pelo terraform foi encontrado um problema na execução dos pods do COREDNS no NS kube-system, nesse step criei uma função IAM onde determinava a execução dos Pods Core_DNS. Como solução de contorno excluir a que foi criada pelo terraform e criei outra pela ConsoleAWS, fazendo uma busca posteriormente vi que é possível adicionar um ADD-ON na estrutura terraform para termos este problema, entratanto não declarei este passo no Terraform devido tempo.
+# Obs.: Na criação do profile fargate pelo terraform foi encontrado um problema na execução dos pods do COREDNS no NS kube-system, nesse step criei uma função IAM onde determinava a execução dos Pods Core_DNS. Como solução de contorno exclui a que foi criada pelo terraform e criei outra pela ConsoleAWS, fazendo uma busca posteriormente vi que é possível adicionar um ADD-ON na estrutura terraform para não termos este problema, entratanto não declarei este passo no Terraform devido tempo.
 
 Segue abaixo link fonte
 https://docs.aws.amazon.com/pt_br/eks/latest/userguide/managing-coredns.html
@@ -138,8 +138,7 @@ https://docs.aws.amazon.com/eks/latest/userguide/fargate-getting-started.html
 
 ## ESTRUTURA CI&CD ##
 Para esse projeto foi escolhido o Github+Gitactions para receber fonte do projeto, estrutura pipeline e estrutura dos arquivos do Terraform. Não irei abordar a fundo conceitos de CI&CD
-Mas a ideia foi:  
-Criar uma estrutura com todos os steps para realizar o deployment no ambiente EKS Fargate, utilizei alguns recursos já disponível no marketplace do Github, como por exemplo o checkout e docker build.
+Mas a ideia foi:  Criar uma estrutura com todos os steps para realizar o deployment no ambiente EKS Fargate, utilizei alguns recursos já disponível no marketplace do Github, como por exemplo o checkout e docker build.
 
 # Foto meramente ilustrativa
 ![integracaocontinua](https://github.com/fastII/desafio/assets/16465756/addee989-a847-4c0d-8426-591f5cc2ed50)
