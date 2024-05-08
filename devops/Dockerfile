@@ -11,6 +11,6 @@ COPY . .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Comando para executar a aplicação quando o contêiner for iniciado
-EXPOSE 8000
+EXPOSE 5000
 ENTRYPOINT ["python", "comment.py"]
-CMD ["runserver", "0.0.0.0:8000"]
+CMD ["runserver", "0.0.0.0:5000"]
