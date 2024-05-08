@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 
 app = Flask(__name__)
-
+# teste
 # Armazenar os comentários em um dicionário onde a chave é o ID da matéria
 comments = {}
 
